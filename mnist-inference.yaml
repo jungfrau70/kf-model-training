@@ -10,8 +10,8 @@ metadata:
 spec:
   ports:
   - name: grpc-tf-serving
-    port: 9999
-    targetPort: 9999
+    port: 9000
+    targetPort: 9000
   - name: http-tf-serving
     port: 8500
     targetPort: 8500
@@ -42,7 +42,7 @@ spec:
     spec:
       containers:
       - args:
-        - --port=9999
+        - --port=9000
         - --rest_api_port=8500
         - --model_name=mnist
         - --model_base_path=s3://$S3_BUCKET/mnist/tf_saved_model
@@ -73,10 +73,10 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 30
           tcpSocket:
-            port: 9999
+            port: 9000
         name: mnist
         ports:
-        - containerPort: 9999
+        - containerPort: 9000
         - containerPort: 8500
         resources:
           limits:
